@@ -50,8 +50,8 @@
     </div>
     <div class="jumbotron">
       <div class="container">
-        <h1>MarketPlace Turismo Ecologico</h1>
-        <p>Usted aqui podra encontrar ofertas, paquetes y servicios de diferentes proveedores para lograr unas vacaciones ecologicas unicas</p>
+        <h1>Metodo Monte Carlo</h1>
+        <p>Generador Congruencial Mixto</p>
       </div>
       <% if(!mensaje.equals("")){
       %>
