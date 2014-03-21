@@ -35,10 +35,23 @@
           var datos = new Array();
           var valor = i != 0 ? "x^" + i : "constante";
           datos.push(valor);
-          datos.push("<input type=\"text\" name=\"" + valor + "\" placeholder=\"" + valor + "\" class=\"form-control\" required>");
+          datos.push("<input type=\"text\" name=\"constante" + i + "\" placeholder=\"" + valor + "\" class=\"form-control\" required>");
           oTabla.fnAddData(datos);
         }
         $('#factores').show();
+      }
+
+      function f_generarEcuacion() {
+        var oTabla = $('#ecuacion').dataTable();
+        var cDatos = $('input', oTabla.fnGetNodes()).serialize();
+        var mDatos = cDatos.split("&");
+        var ecuacion = "";
+        for (var i = mDatos.length - 1; i >= 0; i--) {
+          var vExpresion = mDatos[i].split("=");
+          var valor = i !== 0 ? "x^" + i : "";
+          ecuacion += vExpresion[1] + valor + "+";
+        }
+        $("#ecuacionEscrita").val(ecuacion.substr(0, ecuacion.length - 1));
       }
 
     </script>
@@ -72,6 +85,13 @@
         <div id="factores">
           <table id="ecuacion">
           </table>
+          <br>
+          <textarea name="ecuacionEscrita" id="ecuacionEscrita">
+            
+          </textarea>
+          <button type="button" class="btn btn-default" onclick="f_generarEcuacion();">
+            <span class="glyphicon glyphicon-plus"></span> Generar Ecuacion
+          </button>
         </div>
         <br>
         <input type="submit" value="enviar" class="btn btn-primary">
