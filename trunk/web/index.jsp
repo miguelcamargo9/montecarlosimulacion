@@ -42,6 +42,9 @@
             <div class="form-group">
               <input type="text" name="numeroC" placeholder="Numero C" class="form-control" required>
             </div>
+            <div class="form-group">
+              <input type="text" name="numeroM" placeholder="Numero M" class="form-control" required>
+            </div>
             <input type="submit" class="btn btn-success" value="Ingresar">
           </form>
 
