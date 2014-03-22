@@ -58,7 +58,7 @@
     <title>Monte Carlo</title>
   </head>
   <body>
-    <form class="form-horizontal" action="../adjuntosArchivosServlet" method="post">  
+    <form class="form-horizontal" action="aleatoriosServlet" method="post">  
       <fieldset>  
         <legend>Generador de Numeros Aleatorios</legend>
         <table class="table table-hover">
