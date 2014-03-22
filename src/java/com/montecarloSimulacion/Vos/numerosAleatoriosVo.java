@@ -5,7 +5,6 @@
  */
 package com.montecarloSimulacion.Vos;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -44,9 +43,11 @@ public class numerosAleatoriosVo {
       Xn = XnMasUno;
       bandera=false;
     }
-    for (int i = 0; i < this.matrizAleatorios.size(); i++) {
-      System.out.println("numero"+i+": "+this.matrizAleatorios.get(i));
-    }
   }
+
+  public ArrayList getMatrizAleatorios() {
+    return matrizAleatorios;
+  }
+  
 
 }
