@@ -11,10 +11,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="js/DataTables-1.9.4/media/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="js/DataTables/media/css/jquery.dataTables.css" rel="stylesheet">
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/DataTables/media/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         $('#ecuacion').dataTable({
@@ -90,7 +90,7 @@
             
           </textarea>
           <button type="button" class="btn btn-default" onclick="f_generarEcuacion();">
-            <span class="glyphicon glyphicon-plus"></span> Generar Ecuacion
+            <span class="glyphicon glyphicon-send"></span> Generar Ecuacion
           </button>
         </div>
         <br>
