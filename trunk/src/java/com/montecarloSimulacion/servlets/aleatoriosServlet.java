@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.montecarloSimulacion.servlets;
 
 import com.montecarloSimulacion.Vos.numerosAleatoriosVo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "aleatoriosServlet", urlPatterns = {"/aleatoriosServlet"})
 public class aleatoriosServlet extends HttpServlet {
+
+  ArrayList matrizAleatorios = new ArrayList();
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +42,12 @@ public class aleatoriosServlet extends HttpServlet {
       out.println("<!DOCTYPE html>");
       out.println("<html>");
       out.println("<head>");
-      out.println("<title>Servlet aleatoriosServlet</title>");      
+      out.println("<title>Servlet aleatoriosServlet</title>");
       out.println("</head>");
       out.println("<body>");
-      out.println("<h1>Servlet aleatoriosServlet at " + request.getContextPath() + "</h1>");
+      for (int i = 0; i < this.matrizAleatorios.size(); i++) {
+        out.println("numero" + (i+1) + ": " + this.matrizAleatorios.get(i)+"<br>");
+      }
       out.println("</body>");
       out.println("</html>");
     } finally {
@@ -81,8 +85,9 @@ public class aleatoriosServlet extends HttpServlet {
     Integer numeroC = Integer.parseInt(request.getParameter("numeroC"));
     Integer numeroM = Integer.parseInt(request.getParameter("numeroM"));
     String ecuacionEscrita = request.getParameter("ecuacionEscrita");
-    numerosAleatoriosVo numerosVo= new numerosAleatoriosVo(numeroA, numeroC, numeroM);
+    numerosAleatoriosVo numerosVo = new numerosAleatoriosVo(numeroA, numeroC, numeroM);
     numerosVo.generarNumerosAleatorios();
+    matrizAleatorios = numerosVo.getMatrizAleatorios();
     processRequest(request, response);
   }
 
