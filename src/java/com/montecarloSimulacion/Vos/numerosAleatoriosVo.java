@@ -30,12 +30,16 @@ public class numerosAleatoriosVo {
     boolean bandera = true;
     double XnMasUno;
     double aleatorio;
-    for (int i = 0; i < 100; i++) {
+    double preAleatorio;
+    Integer minimo=4;
+    Integer maximo=9;
+    for (int i = 0; i < 4; i++) {
       if(bandera){
-       Xn = 1; 
+       Xn = 4; 
       } 
       XnMasUno = (numeroA*Xn+numeroC)%numeroM;
-      aleatorio = XnMasUno/numeroM;
+      preAleatorio = XnMasUno/numeroM;
+      aleatorio = preAleatorio*(maximo-minimo+1)+minimo; 
       this.matrizAleatorios.add(aleatorio);
       Xn = XnMasUno;
       bandera=false;
