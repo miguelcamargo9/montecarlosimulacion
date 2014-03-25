@@ -6,14 +6,18 @@
 package com.montecarloSimulacion.servlets;
 
 import com.montecarloSimulacion.Vos.numerosAleatoriosVo;
+import com.montecarloSimulacion.Vos.numerosGraficaVo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,10 +27,10 @@ import javax.servlet.http.HttpServletResponse;
 public class aleatoriosServlet extends HttpServlet {
 
   ArrayList matrizAleatorios = new ArrayList();
+  ArrayList<String> numerosGrafica = new ArrayList<String>();
 
   /**
-   * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-   * methods.
+   * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
    *
    * @param request servlet request
    * @param response servlet response
@@ -38,18 +42,19 @@ public class aleatoriosServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     try {
-      /* TODO output your page here. You may use following sample code. */
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<title>Servlet aleatoriosServlet</title>");
-      out.println("</head>");
-      out.println("<body>");
-      for (int i = 0; i < this.matrizAleatorios.size(); i++) {
-        out.println("numero" + (i+1) + ": " + this.matrizAleatorios.get(i)+"<br>");
+      String labels = "";
+      String data = "";
+      HttpSession session = request.getSession();
+      for (int i = 0; i < numerosGrafica.size(); i++) {
+        List<String> posicionXY = Arrays.asList(numerosGrafica.get(i).split("\\,"));
+        labels += "\"" + posicionXY.get(0) + "\",";
+        data += posicionXY.get(1) + ",";
+
       }
-      out.println("</body>");
-      out.println("</html>");
+      session.setAttribute("labels", labels.substring(0, labels.length() - 1));
+      session.setAttribute("data", data.substring(0, data.length() - 1));
+      session.setMaxInactiveInterval(30 * 60);
+      response.sendRedirect("pages/grafico.jsp");
     } finally {
       out.close();
     }
@@ -88,6 +93,9 @@ public class aleatoriosServlet extends HttpServlet {
     numerosAleatoriosVo numerosVo = new numerosAleatoriosVo(numeroA, numeroC, numeroM);
     numerosVo.generarNumerosAleatorios();
     matrizAleatorios = numerosVo.getMatrizAleatorios();
+    numerosGraficaVo graficaVo = new numerosGraficaVo();
+    graficaVo.generarMatrizParaGraficar((double) numerosVo.getMaximo(), (double) numerosVo.getMinimo(), ecuacionEscrita);
+    numerosGrafica = graficaVo.getNumerosGrafica();
     processRequest(request, response);
   }
 
