@@ -64,4 +64,12 @@ public class numerosAleatoriosVo {
     return matrizAleatorios;
   }
 
+  public Integer getMaximo() {
+    return maximo;
+  }
+
+  public Integer getMinimo() {
+    return minimo;
+  }
+
 }
