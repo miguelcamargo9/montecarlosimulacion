@@ -13,7 +13,8 @@ import java.util.ArrayList;
  */
 public class numerosAleatoriosVo {
 
-  ArrayList matrizAleatorios = new ArrayList();
+  ArrayList<Double> matrizAleatorios = new ArrayList<Double>();
+  ArrayList<Double> preMatrizAleatorios = new ArrayList<Double>();
   Integer numeroA;
   Integer numeroC;
   Integer numeroM;
@@ -25,29 +26,40 @@ public class numerosAleatoriosVo {
   }
 
   public void generarNumerosAleatorios() {
-    double Xn=0;
+    double Xn = 0;
+    double semilla = 1.0;
     boolean bandera = true;
     double XnMasUno;
     double aleatorio;
     double preAleatorio;
-    Integer minimo=4;
-    Integer maximo=9;
-    for (int i = 0; i < 4; i++) {
-      if(bandera){
-       Xn = 4; 
-      } 
-      XnMasUno = (numeroA*Xn+numeroC)%numeroM;
-      preAleatorio = XnMasUno/numeroM;
-      aleatorio = preAleatorio*(maximo-minimo+1)+minimo; 
-      this.matrizAleatorios.add(aleatorio);
+    Integer minimo = numeroM;
+    Integer maximo = 0;
+    for (int i = 0; i < numeroM; i++) {
+      if (bandera) {
+        Xn = semilla;
+      }
+      XnMasUno = (numeroA * Xn + numeroC) % numeroM;
+      preAleatorio = XnMasUno;
+      this.preMatrizAleatorios.add(preAleatorio);
       Xn = XnMasUno;
-      bandera=false;
+      bandera = false;
+    }
+    for (int i = 0; i < preMatrizAleatorios.size(); i++) {
+      if (preMatrizAleatorios.get(i) == semilla) {
+        maximo = minimo + i + 1;
+        break;
+      }
+    }
+
+    for (int i = 0; i < preMatrizAleatorios.size(); i++) {
+      preAleatorio = preMatrizAleatorios.get(i) / numeroM;
+      aleatorio = preAleatorio * (maximo - minimo + 1) + minimo;
+      this.matrizAleatorios.add(aleatorio);
     }
   }
 
   public ArrayList getMatrizAleatorios() {
     return matrizAleatorios;
   }
-  
 
 }
