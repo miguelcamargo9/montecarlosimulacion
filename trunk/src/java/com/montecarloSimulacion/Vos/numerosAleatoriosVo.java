@@ -18,11 +18,15 @@ public class numerosAleatoriosVo {
   Integer numeroA;
   Integer numeroC;
   Integer numeroM;
+  Integer maximo;
+  Integer minimo;
 
   public numerosAleatoriosVo(Integer numeroA, Integer numeroC, Integer numeroM) {
     this.numeroA = numeroA;
     this.numeroC = numeroC;
     this.numeroM = numeroM;
+    this.minimo = numeroM;
+    this.maximo = 0;
   }
 
   public void generarNumerosAleatorios() {
@@ -32,8 +36,6 @@ public class numerosAleatoriosVo {
     double XnMasUno;
     double aleatorio;
     double preAleatorio;
-    Integer minimo = numeroM;
-    Integer maximo = 0;
     for (int i = 0; i < numeroM; i++) {
       if (bandera) {
         Xn = semilla;
