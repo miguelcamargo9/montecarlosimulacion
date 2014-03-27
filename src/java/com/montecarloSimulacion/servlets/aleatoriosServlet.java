@@ -5,6 +5,7 @@
  */
 package com.montecarloSimulacion.servlets;
 
+import com.montecarloSimulacion.Vos.areaBajoCurva;
 import com.montecarloSimulacion.Vos.numerosAleatoriosVo;
 import com.montecarloSimulacion.Vos.numerosGraficaVo;
 import java.io.IOException;
@@ -28,6 +29,8 @@ public class aleatoriosServlet extends HttpServlet {
 
   ArrayList matrizAleatorios = new ArrayList();
   ArrayList<String> numerosGrafica = new ArrayList<String>();
+  areaBajoCurva miAreaBC = new areaBajoCurva();
+  Double AreaBajoCurva;
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -53,6 +56,7 @@ public class aleatoriosServlet extends HttpServlet {
       }
       session.setAttribute("labels", labels.substring(0, labels.length() - 1));
       session.setAttribute("data", data.substring(0, data.length() - 1));
+      session.setAttribute("matrizAleatorios", matrizAleatorios);
       session.setMaxInactiveInterval(30 * 60);
       response.sendRedirect("pages/grafico.jsp");
     } finally {
@@ -89,10 +93,23 @@ public class aleatoriosServlet extends HttpServlet {
     Integer numeroA = Integer.parseInt(request.getParameter("numeroA"));
     Integer numeroC = Integer.parseInt(request.getParameter("numeroC"));
     Integer numeroM = Integer.parseInt(request.getParameter("numeroM"));
+    Integer gradoEcuacion = Integer.parseInt(request.getParameter("gradoEcuacion"));
     String ecuacionEscrita = request.getParameter("ecuacionEscrita");
     numerosAleatoriosVo numerosVo = new numerosAleatoriosVo(numeroA, numeroC, numeroM);
     numerosVo.generarNumerosAleatorios();
     matrizAleatorios = numerosVo.getMatrizAleatorios();
+
+    ArrayList<Integer> funcion = new ArrayList<Integer>();
+    funcion.add(0,gradoEcuacion);
+    for(int i = 0; i < gradoEcuacion; i++){
+      Integer numeroEc = Integer.parseInt(request.getParameter("constante"+i));
+      funcion.add(i+1, numeroEc);
+    }
+    miAreaBC.divifrMatriz(matrizAleatorios);
+//    ArrayList<Double> matrizAleatoriosX = miAreaBC.getMatrizAleatoriosX();
+//    ArrayList<Double> matrizAleatoriosY = miAreaBC.getMatrizAleatoriosX();
+    
+    
     numerosGraficaVo graficaVo = new numerosGraficaVo();
     graficaVo.generarMatrizParaGraficar((double) numerosVo.getMaximo(), (double) numerosVo.getMinimo(), ecuacionEscrita);
     numerosGrafica = graficaVo.getNumerosGrafica();
