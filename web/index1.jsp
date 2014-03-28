@@ -95,7 +95,8 @@
         </div>
         <br>
         <input type="submit" value="enviar" class="btn btn-primary">
-      </fieldset>  
+      </fieldset>
+      <strong>Presentado Por:Miguel Camargo y Sebastian Rojas</strong>
     </form>
   </body>
 </html>
