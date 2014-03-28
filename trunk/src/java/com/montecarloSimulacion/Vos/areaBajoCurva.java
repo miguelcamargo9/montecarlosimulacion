@@ -16,9 +16,18 @@ public class areaBajoCurva {
 
   private ArrayList<Double> matrizAleatoriosX = new ArrayList<Double>();
   private ArrayList<Double> matrizAleatoriosY = new ArrayList<Double>();
+  private ArrayList<Double> numeroBajoCurva = new ArrayList<Double>();
   private Double AreaTotal;
 
   public areaBajoCurva() {
+  }
+
+  public ArrayList<Double> getNumeroBajoCurva() {
+    return numeroBajoCurva;
+  }
+
+  public void setNumeroBajoCurva(ArrayList<Double> numeroBajoCurva) {
+    this.numeroBajoCurva = numeroBajoCurva;
   }
 
   public ArrayList<Double> getMatrizAleatoriosX() {
@@ -80,15 +89,19 @@ public class areaBajoCurva {
   }
 
   public Double totalArea(String funcion, Double Max, Double Min) {
+    ArrayList<Double> numerosBajoCurva = new ArrayList<Double>();
     Double x = 0.0;
     Double y = 0.0;
     int Contador = 0;
     for (int j = 0; j < this.getMatrizAleatoriosX().size(); j++) {
       y = this.getMatrizAleatoriosY().get(j);
       x = this.resuelveEcuacion(funcion, this.getMatrizAleatoriosX().get(j));
-      if(y > x)
-      Contador ++;
+      if(y < x){
+        Contador ++;
+        numerosBajoCurva.add(x);
+      }
     }
+    this.setNumeroBajoCurva(numerosBajoCurva);
     Double AreaCuadrado = this.resuelveEcuacion(funcion, Max)*Max-Min;
     return (double) (Contador/this.getMatrizAleatoriosX().size())*AreaCuadrado;
   }

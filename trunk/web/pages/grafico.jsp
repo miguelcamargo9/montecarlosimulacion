@@ -4,12 +4,20 @@
     Author     : open12
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
   String labels = null;
   String data = null;
+  String AreaTotal = null;
+  ArrayList<Double> matrizAleatorios = new ArrayList<Double>();
+  ArrayList<Double> numeroBajoCurva = new ArrayList<Double>();
   labels = (String) session.getAttribute("labels");
   data = (String) session.getAttribute("data");
+  AreaTotal = (String) session.getAttribute("AreaBajoCurva");
+  matrizAleatorios = (ArrayList<Double>) session.getAttribute("matrizAleatorios");
+  numeroBajoCurva = (ArrayList<Double>) session.getAttribute("numeroBajoCurva");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -47,6 +55,23 @@
     </script>
   </head>
   <body>
+    <strong>Area Bajo la Curva:<%= AreaTotal %></strong>
     <canvas id="myChart" width="1200" height="500"></canvas>
+    <%
+      for (Double NumAle : matrizAleatorios) {
+    %>
+    - <%=NumAle%>
+    <%
+      }
+    %>
+    <br>
+    <%
+      for (Double NumBaj : numeroBajoCurva) {
+    %>
+    - <%=NumBaj%>
+    <%
+      }
+    %>
+    <br>
   </body>
 </html>
