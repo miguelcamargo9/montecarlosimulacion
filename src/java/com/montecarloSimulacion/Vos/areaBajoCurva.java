@@ -60,6 +60,8 @@ public class areaBajoCurva {
     int mitad = 0;
     if (listaAleatorios.size() % 2 != 0) {
       mitad = (int) Math.floor(listaAleatorios.size() / 2);
+    }else{
+      mitad = listaAleatorios.size() / 2;
     }
     for (int j = 0; j < listaAleatorios.size(); j++) {
       if (j < mitad) {

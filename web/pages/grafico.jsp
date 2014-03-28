@@ -55,8 +55,12 @@
     </script>
   </head>
   <body>
-    <strong>Area Bajo la Curva:<%= AreaTotal %></strong>
+    <strong>Area Bajo la Curva: <%= AreaTotal %></strong>
+    <br>
+    <br>
     <canvas id="myChart" width="1200" height="500"></canvas>
+    <br>
+    <strong>Numeros Aleatorios</strong>
     <%
       for (Double NumAle : matrizAleatorios) {
     %>
@@ -65,6 +69,7 @@
       }
     %>
     <br>
+    <strong>Numeros Bajo la Curva</strong>
     <%
       for (Double NumBaj : numeroBajoCurva) {
     %>
