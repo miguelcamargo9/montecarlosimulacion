@@ -38,11 +38,12 @@ public class numerosGraficaVo {
         if (vEcuacion.get(j).indexOf("^") != -1) {
           List<String> expresion = Arrays.asList(vEcuacion.get(j).split("\\^"));
           preResultado = Math.pow(posicionX, Double.parseDouble(expresion.get(1)));
-          resultado = resultado + preResultado;
+          resultado = resultado + (Math.round(preResultado * 100) / 100);
         } else {
           resultado = resultado + Double.parseDouble(vEcuacion.get(j));
         }
       }
+      posicionX = Math.round(posicionX * 100) / 100.00;
       numerosGrafica.add(posicionX + "," + resultado);
       preResultado = 0.0;
       resultado = 0.0;
