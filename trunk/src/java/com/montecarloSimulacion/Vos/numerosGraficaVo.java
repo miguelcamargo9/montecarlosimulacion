@@ -22,13 +22,13 @@ public class numerosGraficaVo {
 
   public void generarMatrizParaGraficar(Double maximo, Double minimo, String ecuacion) {
     Double resta = maximo - minimo;
-    Double rango = resta / 5;
+    Double rango = resta / 50;
     Double preResultado;
     Double resultado = 0.0;
     Double posicionX = 0.0;
     boolean bandera = true;
     List<String> vEcuacion = Arrays.asList(ecuacion.split("\\+"));
-    for (int i = 0; i <= 5; i++) {
+    for (int i = 0; i <= 50; i++) {
       if (bandera) {
         posicionX = minimo;
       } else {
