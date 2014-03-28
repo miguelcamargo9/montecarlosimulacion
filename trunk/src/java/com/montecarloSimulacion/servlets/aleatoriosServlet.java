@@ -58,7 +58,7 @@ public class aleatoriosServlet extends HttpServlet {
       session.setAttribute("labels", labels.substring(0, labels.length() - 1));
       session.setAttribute("data", data.substring(0, data.length() - 1));
       session.setAttribute("matrizAleatorios", matrizAleatorios);
-      session.setAttribute("AreaBajoCurva", AreaBajoCurva);
+      session.setAttribute("AreaBajoCurva", ""+AreaBajoCurva);
       session.setAttribute("numeroBajoCurva", numeroBajoCurva);
       session.setMaxInactiveInterval(30 * 60);
       response.sendRedirect("pages/grafico.jsp");
@@ -101,7 +101,7 @@ public class aleatoriosServlet extends HttpServlet {
     numerosVo.generarNumerosAleatorios();
     matrizAleatorios = numerosVo.getMatrizAleatorios();
     miAreaBC.divifrMatriz(matrizAleatorios);
-    AreaBajoCurva = miAreaBC.totalArea(ecuacionEscrita,(double) numerosVo.getMaximo(),(double) numerosVo.getMaximo());
+    AreaBajoCurva = miAreaBC.totalArea(ecuacionEscrita,(double) numerosVo.getMaximo(),(double) numerosVo.getMinimo());
     numeroBajoCurva = miAreaBC.getNumeroBajoCurva();
     numerosGraficaVo graficaVo = new numerosGraficaVo();
     graficaVo.generarMatrizParaGraficar((double) numerosVo.getMaximo(), (double) numerosVo.getMinimo(), ecuacionEscrita);
