@@ -93,23 +93,12 @@ public class aleatoriosServlet extends HttpServlet {
     Integer numeroA = Integer.parseInt(request.getParameter("numeroA"));
     Integer numeroC = Integer.parseInt(request.getParameter("numeroC"));
     Integer numeroM = Integer.parseInt(request.getParameter("numeroM"));
-    Integer gradoEcuacion = Integer.parseInt(request.getParameter("gradoEcuacion"));
     String ecuacionEscrita = request.getParameter("ecuacionEscrita");
     numerosAleatoriosVo numerosVo = new numerosAleatoriosVo(numeroA, numeroC, numeroM);
     numerosVo.generarNumerosAleatorios();
     matrizAleatorios = numerosVo.getMatrizAleatorios();
-
-    ArrayList<Integer> funcion = new ArrayList<Integer>();
-    funcion.add(0,gradoEcuacion);
-    for(int i = 0; i < gradoEcuacion; i++){
-      Integer numeroEc = Integer.parseInt(request.getParameter("constante"+i));
-      funcion.add(i+1, numeroEc);
-    }
-    miAreaBC.divifrMatriz(matrizAleatorios);
-//    ArrayList<Double> matrizAleatoriosX = miAreaBC.getMatrizAleatoriosX();
-//    ArrayList<Double> matrizAleatoriosY = miAreaBC.getMatrizAleatoriosX();
-    
-    
+    miAreaBC.divifrMatriz(matrizAleatorios);    
+    AreaBajoCurva = miAreaBC.totalArea(ecuacionEscrita,(double) numerosVo.getMaximo(),(double) numerosVo.getMaximo());
     numerosGraficaVo graficaVo = new numerosGraficaVo();
     graficaVo.generarMatrizParaGraficar((double) numerosVo.getMaximo(), (double) numerosVo.getMinimo(), ecuacionEscrita);
     numerosGrafica = graficaVo.getNumerosGrafica();
