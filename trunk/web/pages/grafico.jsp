@@ -47,36 +47,50 @@
               data: [<%=data%>]
             }
           ]
-        }
-        new Chart(ctx).Line(data);
+        };
+        var options = {
+          scaleOverlay: false
+        };
+
+        new Chart(ctx).Line(data, options);
       });
 
 
     </script>
   </head>
   <body>
-    <strong>Area Bajo la Curva: <%= AreaTotal %></strong>
+    <fieldset>  
+      <legend>Calculo del Area</legend>
+      <strong>Area Bajo la Curva: <%= AreaTotal%></strong>
+    </fieldset>
     <br>
     <br>
-    <canvas id="myChart" width="1200" height="500"></canvas>
+    <fieldset>  
+      <legend>Grafica</legend>
+      <canvas id="myChart" width="1200" height="500"></canvas>
+    </fieldset>
     <br>
-    <strong>Numeros Aleatorios</strong>
-    <%
-      for (Double NumAle : matrizAleatorios) {
-    %>
-    - <%=NumAle%>
-    <%
-      }
-    %>
+    <fieldset>
+      <legend>Numeros Aleatorios</legend>
+      <%
+        for (Double NumAle : matrizAleatorios) {
+      %>
+      - <%=NumAle%>
+      <%
+        }
+      %>
+    </fieldset>
     <br>
-    <strong>Numeros Bajo la Curva</strong>
-    <%
-      for (Double NumBaj : numeroBajoCurva) {
-    %>
-    - <%=NumBaj%>
-    <%
-      }
-    %>
+    <fieldset>
+      <legend>Numeros Bajo la Curva</legend>
+      <%
+        for (Double NumBaj : numeroBajoCurva) {
+      %>
+      - <%=NumBaj%>
+      <%
+        }
+      %>
+    </fieldset>
     <br>
   </body>
 </html>
