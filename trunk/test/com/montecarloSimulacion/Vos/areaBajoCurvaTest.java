@@ -18,6 +18,31 @@ public class areaBajoCurvaTest extends TestCase {
   }
 
   /**
+   * Test of getNumeroBajoCurva method, of class areaBajoCurva.
+   */
+  public void testGetNumeroBajoCurva() {
+    System.out.println("getNumeroBajoCurva");
+    areaBajoCurva instance = new areaBajoCurva();
+    ArrayList expResult = null;
+    ArrayList result = instance.getNumeroBajoCurva();
+    assertEquals(expResult, result);
+    // TODO review the generated test code and remove the default call to fail.
+    fail("The test case is a prototype.");
+  }
+
+  /**
+   * Test of setNumeroBajoCurva method, of class areaBajoCurva.
+   */
+  public void testSetNumeroBajoCurva() {
+    System.out.println("setNumeroBajoCurva");
+    ArrayList<Double> numeroBajoCurva = null;
+    areaBajoCurva instance = new areaBajoCurva();
+    instance.setNumeroBajoCurva(numeroBajoCurva);
+    // TODO review the generated test code and remove the default call to fail.
+    fail("The test case is a prototype.");
+  }
+
+  /**
    * Test of getMatrizAleatoriosX method, of class areaBajoCurva.
    */
   public void testGetMatrizAleatoriosX() {
@@ -77,7 +102,8 @@ public class areaBajoCurvaTest extends TestCase {
     System.out.println("setAreaTotal");
     areaBajoCurva instance = new areaBajoCurva();
     instance.setAreaTotal();
-
+    // TODO review the generated test code and remove the default call to fail.
+    fail("The test case is a prototype.");
   }
 
   /**
@@ -95,10 +121,10 @@ public class areaBajoCurvaTest extends TestCase {
    */
   public void testResuelveEcuacion() {
     System.out.println("resuelveEcuacion");
-    String Ecuacion = "x^3+x^1";
-    Double x = 3.0;
+    String Ecuacion = "";
+    Double x = null;
     areaBajoCurva instance = new areaBajoCurva();
-    Double expResult = 30.0;
+    Double expResult = null;
     Double result = instance.resuelveEcuacion(Ecuacion, x);
     assertEquals(expResult, result);
   }
@@ -108,10 +134,12 @@ public class areaBajoCurvaTest extends TestCase {
    */
   public void testTotalArea() {
     System.out.println("totalArea");
-    ArrayList<Integer> funcion = null;
+    String funcion = "";
+    Double Max = null;
+    Double Min = null;
     areaBajoCurva instance = new areaBajoCurva();
     Double expResult = null;
-    Double result = instance.totalArea(funcion);
+    Double result = instance.totalArea(funcion, Max, Min);
     assertEquals(expResult, result);
   }
 }
