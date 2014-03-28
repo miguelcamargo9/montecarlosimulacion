@@ -95,16 +95,18 @@ public class areaBajoCurva {
     Double x = 0.0;
     Double y = 0.0;
     int Contador = 0;
-    for (int j = 0; j < this.getMatrizAleatoriosX().size(); j++) {
+    Double size = (double)this.getMatrizAleatoriosX().size();
+    for (int j = 0; j < size; j++) {
       y = this.getMatrizAleatoriosY().get(j);
       x = this.resuelveEcuacion(funcion, this.getMatrizAleatoriosX().get(j));
       if(y < x){
         Contador ++;
-        numerosBajoCurva.add(x);
+        numerosBajoCurva.add(this.getMatrizAleatoriosX().get(j));
       }
     }
     this.setNumeroBajoCurva(numerosBajoCurva);
     Double AreaCuadrado = this.resuelveEcuacion(funcion, Max)*Max-Min;
-    return (double) (Contador/this.getMatrizAleatoriosX().size())*AreaCuadrado;
+    Double AreaPuntos = (double)Contador/size;
+    return AreaPuntos*AreaCuadrado;
   }
 }
