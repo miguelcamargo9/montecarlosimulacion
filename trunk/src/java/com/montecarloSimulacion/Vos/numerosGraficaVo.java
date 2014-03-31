@@ -37,7 +37,11 @@ public class numerosGraficaVo {
       for (int j = 0; j < vEcuacion.size(); j++) {
         if (vEcuacion.get(j).indexOf("^") != -1) {
           List<String> expresion = Arrays.asList(vEcuacion.get(j).split("\\^"));
+          Integer numeroMultiplicar = Integer.parseInt(expresion.get(0).substring(0, expresion.get(0).length()-1));
           preResultado = Math.pow(posicionX, Double.parseDouble(expresion.get(1)));
+          if(numeroMultiplicar!=null) {
+          preResultado = preResultado*numeroMultiplicar;
+        }
           resultado = resultado + (Math.round(preResultado * 100) / 100);
         } else {
           resultado = resultado + Double.parseDouble(vEcuacion.get(j));

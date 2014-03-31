@@ -81,7 +81,11 @@ public class areaBajoCurva {
     for (int j = 0; j < vEcuacion.size(); j++) {
       if (vEcuacion.get(j).indexOf("^") != -1) {
         List<String> expresion = Arrays.asList(vEcuacion.get(j).split("\\^"));
+        Integer numeroMultiplicar = Integer.parseInt(expresion.get(0).substring(0, expresion.get(0).length()-1));
         preResultado = Math.pow(x, Double.parseDouble(expresion.get(1)));
+        if(numeroMultiplicar!=null) {
+          preResultado = preResultado*numeroMultiplicar;
+        }
         resultado = resultado + preResultado;
       } else {
         resultado = resultado + Double.parseDouble(vEcuacion.get(j));
@@ -95,8 +99,9 @@ public class areaBajoCurva {
     Double x = 0.0;
     Double y = 0.0;
     int Contador = 0;
-    Double size = (double)this.getMatrizAleatoriosX().size();
-    for (int j = 0; j < size; j++) {
+    Double sizeX = (double)this.getMatrizAleatoriosX().size();
+    Double sizeY = (double)this.getMatrizAleatoriosY().size();
+    for (int j = 0; j < sizeX; j++) {
       y = this.getMatrizAleatoriosY().get(j);
       x = this.resuelveEcuacion(funcion, this.getMatrizAleatoriosX().get(j));
       if(y < x){
@@ -105,8 +110,8 @@ public class areaBajoCurva {
       }
     }
     this.setNumeroBajoCurva(numerosBajoCurva);
-    Double AreaCuadrado = this.resuelveEcuacion(funcion, Max)*Max-Min;
-    Double AreaPuntos = (double)Contador/size;
-    return AreaPuntos*AreaCuadrado;
+    Double AreaCuadrado = this.resuelveEcuacion(funcion, Max)*(Max-Min);
+    Double AreaPuntos = (double)Contador/(sizeX+sizeY);
+    return (AreaPuntos*AreaCuadrado);
   }
 }

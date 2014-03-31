@@ -99,8 +99,10 @@ public class aleatoriosServlet extends HttpServlet {
     Integer numeroA = Integer.parseInt(request.getParameter("numeroA"));
     Integer numeroC = Integer.parseInt(request.getParameter("numeroC"));
     Integer numeroM = Integer.parseInt(request.getParameter("numeroM"));
+    Integer numeroMax = Integer.parseInt(request.getParameter("numeroMax"));
+    Integer numeroMin = Integer.parseInt(request.getParameter("numeroMin"));
     String ecuacionEscrita = request.getParameter("ecuacionEscrita");
-    numerosAleatoriosVo numerosVo = new numerosAleatoriosVo(numeroA, numeroC, numeroM);
+    numerosAleatoriosVo numerosVo = new numerosAleatoriosVo(numeroA, numeroC, numeroM, numeroMax, numeroMin);
     numerosVo.generarNumerosAleatorios();
     matrizAleatorios = numerosVo.getMatrizAleatorios();
     miAreaBC.divifrMatriz(matrizAleatorios);
