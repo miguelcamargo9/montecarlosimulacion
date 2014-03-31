@@ -21,12 +21,12 @@ public class numerosAleatoriosVo {
   Integer maximo;
   Integer minimo;
 
-  public numerosAleatoriosVo(Integer numeroA, Integer numeroC, Integer numeroM) {
+  public numerosAleatoriosVo(Integer numeroA, Integer numeroC, Integer numeroM, Integer maximo, Integer minimo) {
     this.numeroA = numeroA;
     this.numeroC = numeroC;
     this.numeroM = numeroM;
-    this.minimo = numeroM;
-    this.maximo = 0;
+    this.minimo = minimo;
+    this.maximo = maximo;
   }
 
   public void generarNumerosAleatorios() {
@@ -46,12 +46,12 @@ public class numerosAleatoriosVo {
       Xn = XnMasUno;
       bandera = false;
     }
-    for (int i = 0; i < preMatrizAleatorios.size(); i++) {
-      if (preMatrizAleatorios.get(i) == semilla) {
-        maximo = minimo + i + 1;
-        break;
-      }
-    }
+//    for (int i = 0; i < preMatrizAleatorios.size(); i++) {
+//      if (preMatrizAleatorios.get(i) == semilla) {
+//        maximo = minimo + i + 1;
+//        break;
+//      }
+//    }
 
     for (int i = 0; i < preMatrizAleatorios.size(); i++) {
       preAleatorio = preMatrizAleatorios.get(i) / numeroM;

@@ -72,6 +72,12 @@
             <td><input type="text" name="numeroM" placeholder="Numero M" class="form-control" required></td>
           </tr>
           <tr>
+            <td><input type="text" name="numeroMax" placeholder="Numero Max" class="form-control" required></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="numeroMin" placeholder="Numero Min" class="form-control" required></td>
+          </tr>
+          <tr>
             <td>
               <input type="text" id="gradoEcuacion" placeholder="grado Ecuacion" class="form-control" required>
             </td>
