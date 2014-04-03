@@ -29,7 +29,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "aleatoriosServlet", urlPatterns = {"/aleatoriosServlet"})
 public class aleatoriosServlet extends HttpServlet {
 
-  ArrayList matrizAleatorios = new ArrayList();
+  ArrayList matrizAleatoriosY = new ArrayList();
+  ArrayList matrizAleatoriosX = new ArrayList();
   ArrayList<String> numerosGrafica = new ArrayList<String>();
   ArrayList<Double> numeroBajoCurva = new ArrayList<Double>();
   areaBajoCurva miAreaBC = new areaBajoCurva();
@@ -60,7 +61,8 @@ public class aleatoriosServlet extends HttpServlet {
       BigInteger a = new BigDecimal(AreaBajoCurva).toBigInteger();
       session.setAttribute("labels", labels.substring(0, labels.length() - 1));
       session.setAttribute("data", data.substring(0, data.length() - 1));
-      session.setAttribute("matrizAleatorios", matrizAleatorios);
+      session.setAttribute("matrizAleatoriosX", matrizAleatoriosX);
+      session.setAttribute("matrizAleatoriosY", matrizAleatoriosY);
       session.setAttribute("AreaBajoCurva", "" + a);
       session.setAttribute("numeroBajoCurva", numeroBajoCurva);
       session.setMaxInactiveInterval(30 * 60);
@@ -102,14 +104,21 @@ public class aleatoriosServlet extends HttpServlet {
     Integer numeroMax = Integer.parseInt(request.getParameter("numeroMax"));
     Integer numeroMin = Integer.parseInt(request.getParameter("numeroMin"));
     String ecuacionEscrita = request.getParameter("ecuacionEscrita");
-    numerosAleatoriosVo numerosVo = new numerosAleatoriosVo(numeroA, numeroC, numeroM, numeroMax, numeroMin);
-    numerosVo.generarNumerosAleatorios();
-    matrizAleatorios = numerosVo.getMatrizAleatorios();
-    miAreaBC.divifrMatriz(matrizAleatorios);
-    AreaBajoCurva = miAreaBC.totalArea(ecuacionEscrita, (double) numerosVo.getMaximo(), (double) numerosVo.getMinimo());
+    numerosAleatoriosVo numerosVoX = new numerosAleatoriosVo(numeroA, numeroC, numeroM, numeroMax, numeroMin);
+    numerosVoX.generarNumerosAleatorios();
+    matrizAleatoriosX = numerosVoX.getMatrizAleatorios();
+//    miAreaBC.divifrMatriz(matrizAleatorios);
+    Double minY = miAreaBC.resuelveEcuacion(ecuacionEscrita, (double)numeroMin);
+    Double maxY = miAreaBC.resuelveEcuacion(ecuacionEscrita, (double)numeroMax);
+    numerosAleatoriosVo numerosVoY = new numerosAleatoriosVo(numeroA, numeroC, numeroM, (int)maxY.doubleValue(), (int)minY.doubleValue());
+    numerosVoY.generarNumerosAleatorios();
+    matrizAleatoriosY = numerosVoY.getMatrizAleatorios();
+    miAreaBC.setMatrizAleatoriosX(matrizAleatoriosX);
+    miAreaBC.setMatrizAleatoriosY(matrizAleatoriosY);
+    AreaBajoCurva = miAreaBC.totalArea(ecuacionEscrita, (double) numerosVoX.getMaximo(), (double) numerosVoX.getMinimo());
     numeroBajoCurva = miAreaBC.getNumeroBajoCurva();
     numerosGraficaVo graficaVo = new numerosGraficaVo();
-    graficaVo.generarMatrizParaGraficar((double) numerosVo.getMaximo(), (double) numerosVo.getMinimo(), ecuacionEscrita);
+    graficaVo.generarMatrizParaGraficar((double) numerosVoX.getMaximo(), (double) numerosVoX.getMinimo(), ecuacionEscrita);
     numerosGrafica = graficaVo.getNumerosGrafica();
     processRequest(request, response);
   }
