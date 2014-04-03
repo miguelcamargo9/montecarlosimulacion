@@ -40,12 +40,13 @@ public class numerosAleatoriosVo {
       if (bandera) {
         Xn = semilla;
       }
-      XnMasUno = (numeroA * Xn + numeroC) % numeroM;
+      XnMasUno = ((numeroA * Xn) + numeroC) % numeroM;
       preAleatorio = XnMasUno;
       this.preMatrizAleatorios.add(preAleatorio);
       Xn = XnMasUno;
       bandera = false;
     }
+
 //    for (int i = 0; i < preMatrizAleatorios.size(); i++) {
 //      if (preMatrizAleatorios.get(i) == semilla) {
 //        maximo = minimo + i + 1;
@@ -55,7 +56,7 @@ public class numerosAleatoriosVo {
 
     for (int i = 0; i < preMatrizAleatorios.size(); i++) {
       preAleatorio = preMatrizAleatorios.get(i) / numeroM;
-      aleatorio = preAleatorio * (maximo - minimo + 1) + minimo;
+      aleatorio = preAleatorio * (maximo - minimo) + minimo;
       this.matrizAleatorios.add(aleatorio);
     }
   }

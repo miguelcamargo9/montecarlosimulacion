@@ -57,18 +57,18 @@ public class areaBajoCurva {
   public void divifrMatriz(ArrayList<Double> listaAleatorios) {
     ArrayList<Double> matrizAX = new ArrayList<Double>();
     ArrayList<Double> matrizAY = new ArrayList<Double>();
-    int mitad = 0;
-    if (listaAleatorios.size() % 2 != 0) {
-      mitad = (int) Math.floor(listaAleatorios.size() / 2);
-    }else{
-      mitad = listaAleatorios.size() / 2;
-    }
+//    int mitad = 0;
+//    if (listaAleatorios.size() % 2 != 0) {
+//      mitad = (int) Math.floor(listaAleatorios.size() / 2);
+//      listaAleatorios.remove(listaAleatorios.size()-1);
+//    }else{
+//      mitad = listaAleatorios.size() / 2;
+//    }
     for (int j = 0; j < listaAleatorios.size(); j++) {
-      if (j < mitad) {
         matrizAX.add(listaAleatorios.get(j));
-      } else {
-        matrizAY.add(listaAleatorios.get(j));
-      }
+    }
+    for (int i = listaAleatorios.size()-1; i >= 0; i--) {
+        matrizAY.add(listaAleatorios.get(i));
     }
     this.setMatrizAleatoriosX(matrizAX);
     this.setMatrizAleatoriosY(matrizAY);
@@ -110,7 +110,7 @@ public class areaBajoCurva {
       }
     }
     this.setNumeroBajoCurva(numerosBajoCurva);
-    Double AreaCuadrado = this.resuelveEcuacion(funcion, Max)*(Max-Min);
+    Double AreaCuadrado = this.resuelveEcuacion(funcion, Max)*(Max-(Min));
     Double AreaPuntos = (double)Contador/(sizeX+sizeY);
     return (AreaPuntos*AreaCuadrado);
   }

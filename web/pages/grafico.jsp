@@ -10,12 +10,14 @@
   String labels = null;
   String data = null;
   String AreaTotal = null;
-  ArrayList<Double> matrizAleatorios = new ArrayList<Double>();
+  ArrayList<Double> matrizAleatoriosX = new ArrayList<Double>();
+  ArrayList<Double> matrizAleatoriosY = new ArrayList<Double>();
   ArrayList<Double> numeroBajoCurva = new ArrayList<Double>();
   labels = (String) session.getAttribute("labels");
   data = (String) session.getAttribute("data");
   AreaTotal = (String) session.getAttribute("AreaBajoCurva");
-  matrizAleatorios = (ArrayList<Double>) session.getAttribute("matrizAleatorios");
+  matrizAleatoriosX = (ArrayList<Double>) session.getAttribute("matrizAleatoriosX");
+  matrizAleatoriosY = (ArrayList<Double>) session.getAttribute("matrizAleatoriosY");
   numeroBajoCurva = (ArrayList<Double>) session.getAttribute("numeroBajoCurva");
 
 %>
@@ -71,9 +73,19 @@
     </fieldset>
     <br>
     <fieldset>
-      <legend>Numeros Aleatorios</legend>
+      <legend>Numeros Aleatorios X</legend>
       <%
-        for (Double NumAle : matrizAleatorios) {
+        for (Double NumAle : matrizAleatoriosX) {
+      %>
+      - <%=NumAle%>
+      <%
+        }
+      %>
+    </fieldset>
+    <fieldset>
+      <legend>Numeros Aleatorios Y</legend>
+      <%
+        for (Double NumAle : matrizAleatoriosY) {
       %>
       - <%=NumAle%>
       <%
