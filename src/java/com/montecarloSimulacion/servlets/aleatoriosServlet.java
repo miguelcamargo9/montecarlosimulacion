@@ -107,12 +107,7 @@ public class aleatoriosServlet extends HttpServlet {
     numerosAleatoriosVo numerosVoX = new numerosAleatoriosVo(numeroA, numeroC, numeroM, numeroMax, numeroMin);
     numerosVoX.generarNumerosAleatorios();
     matrizAleatoriosX = numerosVoX.getMatrizAleatorios();
-//    miAreaBC.divifrMatriz(matrizAleatorios);
-    Double minY = miAreaBC.resuelveEcuacion(ecuacionEscrita, (double)numeroMin);
-    Double maxY = miAreaBC.resuelveEcuacion(ecuacionEscrita, (double)numeroMax);
-    numerosAleatoriosVo numerosVoY = new numerosAleatoriosVo(numeroA, numeroC, numeroM, (int)maxY.doubleValue(), (int)minY.doubleValue());
-    numerosVoY.generarNumerosAleatorios();
-    matrizAleatoriosY = numerosVoY.getMatrizAleatorios();
+    matrizAleatoriosY = numerosVoX.getMatrizAleatoriosY();
     miAreaBC.setMatrizAleatoriosX(matrizAleatoriosX);
     miAreaBC.setMatrizAleatoriosY(matrizAleatoriosY);
     AreaBajoCurva = miAreaBC.totalArea(ecuacionEscrita, (double) numerosVoX.getMaximo(), (double) numerosVoX.getMinimo());

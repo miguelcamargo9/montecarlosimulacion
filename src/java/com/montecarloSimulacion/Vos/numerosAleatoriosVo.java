@@ -64,6 +64,13 @@ public class numerosAleatoriosVo {
   public ArrayList getMatrizAleatorios() {
     return matrizAleatorios;
   }
+  public ArrayList getMatrizAleatoriosY() {
+    ArrayList<Double> matrizAleatoriosY = new ArrayList<Double>();
+    for(int i=matrizAleatorios.size()-1; i>=0;i--) {
+      matrizAleatoriosY.add(matrizAleatorios.get(i));
+    }
+    return matrizAleatoriosY;
+  }
 
   public Integer getMaximo() {
     return maximo;
