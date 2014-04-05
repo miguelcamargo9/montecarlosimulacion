@@ -66,8 +66,10 @@ public class numerosAleatoriosVo {
   }
   public ArrayList getMatrizAleatoriosY() {
     ArrayList<Double> matrizAleatoriosY = new ArrayList<Double>();
-    for(int i=matrizAleatorios.size()-1; i>=0;i--) {
-      matrizAleatoriosY.add(matrizAleatorios.get(i));
+    double aleatorio;
+    for(int i=preMatrizAleatorios.size()-1; i>=0;i--) {
+      aleatorio = preMatrizAleatorios.get(i) / numeroM;
+      matrizAleatoriosY.add(aleatorio);
     }
     return matrizAleatoriosY;
   }

@@ -102,7 +102,7 @@ public class areaBajoCurva {
     Double sizeX = (double)this.getMatrizAleatoriosX().size();
     Double sizeY = (double)this.getMatrizAleatoriosY().size();
     for (int j = 0; j < sizeX; j++) {
-      y = this.getMatrizAleatoriosY().get(j);
+      y = this.getMatrizAleatoriosY().get(j) *this.resuelveEcuacion(funcion, Max);
       x = this.resuelveEcuacion(funcion, this.getMatrizAleatoriosX().get(j));
       if(y < x){
         Contador ++;
@@ -111,7 +111,7 @@ public class areaBajoCurva {
     }
     this.setNumeroBajoCurva(numerosBajoCurva);
     Double AreaCuadrado = this.resuelveEcuacion(funcion, Max)*(Max-(Min));
-    Double AreaPuntos = (double)Contador/(sizeX+sizeY);
+    Double AreaPuntos = (double)Contador/(sizeX);
     return (AreaPuntos*AreaCuadrado);
   }
 }
